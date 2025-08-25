@@ -7,6 +7,16 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    /* Navbar 
+    .navbar {
+      background: linear-gradient(90deg, #0066cc, #0099ff);
+    }*/
+
+    /* Global Gradient Background */
+    body {
+      background: linear-gradient(135deg, #f0f7ff, #e6fff6);
+      min-height: 100vh;
+    }
     .carousel-item {
       height: 100vh;
       min-height: 400px;
@@ -50,45 +60,56 @@
     </div>
   </nav>
 
-  <!-- Slideshow / Hero Carousel -->
-  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+  <!-- Slideshow / Carousel with Margin -->
+<div class="container my-5">
+  <div id="heroCarousel" class="carousel slide shadow-lg rounded overflow-hidden" data-bs-ride="carousel">
     <div class="carousel-inner">
+
       <!-- Slide 1 -->
-      <div class="carousel-item active" style="background-image: url('https://picsum.photos/id/1015/1920/1080');">
-        <div class="carousel-caption text-center">
-          <h1 class="display-4 fw-bold">“The best way to get started is to quit talking and begin doing.”</h1>
-            <!-- <a href="#about" class="btn btn-primary mt-3">More</a> -->
-            <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
+      <div class="carousel-item active" 
+           style="background-image: url('https://picsum.photos/id/1015/1200/600'); height: 70vh; background-size: cover; background-position: center;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>"The best way to get started is to quit talking and begin doing."</h1>
+          <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
         </div>
       </div>
+
       <!-- Slide 2 -->
-      <div class="carousel-item" style="background-image: url('https://picsum.photos/id/1016/1920/1080');">
-        <div class="carousel-caption text-center">
-            <h1 class="display-4 fw-bold">“Don’t let yesterday take up too much of today.”</h1>
-            <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
+      <div class="carousel-item" 
+           style="background-image: url('https://picsum.photos/id/1016/1200/600'); height: 70vh; background-size: cover; background-position: center;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>"Don’t let yesterday take up too much of today."</h1>
+          <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
         </div>
       </div>
+
       <!-- Slide 3 -->
-      <div class="carousel-item" style="background-image: url('https://picsum.photos/id/1018/1920/1080');">
-        <div class="carousel-caption text-center">
-          <h1 class="display-4 fw-bold">“It’s not whether you get knocked down, it’s whether you get up.”</h1>
-        <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
+      <div class="carousel-item" 
+           style="background-image: url('https://picsum.photos/id/1018/1200/600'); height: 70vh; background-size: cover; background-position: center;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>"It’s not whether you get knocked down, it’s whether you get up."</h1>
+          <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
         </div>
       </div>
+
       <!-- Slide 4 -->
-      <div class="carousel-item" style="background-image: url('https://picsum.photos/id/1019/1920/1080');">
-        <div class="carousel-caption text-center">
-          <h1 class="display-4 fw-bold">“If you are working on something exciting, it will keep you motivated.”</h1>
-        <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
+      <div class="carousel-item" 
+           style="background-image: url('https://picsum.photos/id/1024/1200/600'); height: 70vh; background-size: cover; background-position: center;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>"If you are working on something exciting, it will keep you motivated."</h1>
+          <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
         </div>
       </div>
+
       <!-- Slide 5 -->
-      <div class="carousel-item" style="background-image: url('https://picsum.photos/id/1020/1920/1080');">
-        <div class="carousel-caption text-center">
-          <h1 class="display-4 fw-bold">“Success is not in what you have, but who you are.”</h1>
-            <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
+      <div class="carousel-item" 
+           style="background-image: url('https://picsum.photos/id/1025/1200/600'); height: 70vh; background-size: cover; background-position: center;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>"Success is not in what you have, but who you are."</h1>
+          <a href="#about" class="btn btn-lg btn-primary more-btn mt-3">More</a>
         </div>
       </div>
+
     </div>
 
     <!-- Controls -->
@@ -99,44 +120,46 @@
       <span class="carousel-control-next-icon"></span>
     </button>
   </div>
+</div>
+
 
   <!-- 3 Section Row -->
-<section class="py-5 bg-light">
+<section class="py-5">
   <div class="container">
-    <div class="row text-center">
+    <div class="row text-center g-4">
 
       <!-- Photography -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow border-0 h-100">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-lg border-0 rounded overflow-hidden">
           <img src="https://picsum.photos/id/1005/600/400" class="card-img-top" alt="Photography">
           <div class="card-body">
             <h4 class="card-title fw-bold">Photography</h4>
             <p class="card-text">Explore my photo collections capturing moments and nature.</p>
-            <a href="#photography" class="btn btn-outline-primary">View More</a>
+            <a href="#photography" class="btn btn-outline-primary rounded-pill px-4">View More</a>
           </div>
         </div>
       </div>
 
       <!-- Handicrafts -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow border-0 h-100">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-lg border-0 rounded overflow-hidden">
           <img src="https://picsum.photos/id/1011/600/400" class="card-img-top" alt="Handi Crafts">
           <div class="card-body">
             <h4 class="card-title fw-bold">Handi Crafts</h4>
             <p class="card-text">Discover creative and unique handicraft works designed with love.</p>
-            <a href="#handicrafts" class="btn btn-outline-success">View More</a>
+            <a href="#handicrafts" class="btn btn-outline-success rounded-pill px-4">View More</a>
           </div>
         </div>
       </div>
 
       <!-- Travel Logs -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow border-0 h-100">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-lg border-0 rounded overflow-hidden">
           <img src="https://picsum.photos/id/1022/600/400" class="card-img-top" alt="Travel Logs">
           <div class="card-body">
             <h4 class="card-title fw-bold">Travel Logs</h4>
             <p class="card-text">Read my travel experiences and journey stories across places.</p>
-            <a href="#travel" class="btn btn-outline-danger">View More</a>
+            <a href="#travel" class="btn btn-outline-danger rounded-pill px-4">View More</a>
           </div>
         </div>
       </div>

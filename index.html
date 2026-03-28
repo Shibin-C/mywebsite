@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi5Clicks | High-End Photography Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ------------------------------------------------
+        MODERN CSS RESET & VARIABLES
+        ------------------------------------------------
+        */
+        :root {
+            --primary-gold: #c5a059;
+            --text-dark: #1a1a1a;
+            --text-light: #555555;
+            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f4f7f6 50%, #e9eeee 100%);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+        /* ------------------------------------------------
+        NAVIGATION
+        ------------------------------------------------
+        */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 30px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 10%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .logo { font-size: 1.8rem; letter-spacing: 4px; font-weight: 600; }
+        .nav-links { display: flex; list-style: none; gap: 40px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        /* ------------------------------------------------
+        HERO SECTION (Split Layout)
+        ------------------------------------------------
+        */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content { flex: 1; padding-right: 50px; opacity: 0; transform: translateY(30px); animation: fadeInUp 1s forwards 0.5s; }
+        .hero-image { 
+            flex: 1.2; 
+            height: 80vh; 
+            background: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2070') center/cover;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 { font-size: 5rem; line-height: 1; margin-bottom: 20px; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); max-width: 500px; margin-bottom: 30px; }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--text-dark);
+            text-decoration: none;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+
+        .btn:hover { background: var(--text-dark); color: #fff; }
+
+        /* ------------------------------------------------
+        SERVICES SECTION (Grid Layout)
+        ------------------------------------------------
+        */
+        .section { padding: 120px 10%; }
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 3.5rem; margin-bottom: 10px; }
+        .section-header p { text-transform: uppercase; letter-spacing: 5px; color: var(--primary-gold); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1auto);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 5px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 40px 60px rgba(0,0,0,0.05);
+        }
+
+        .service-card h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .service-card p { font-size: 0.95rem; color: var(--text-light); }
+
+        /* ------------------------------------------------
+        GALLERY SECTION (Masonry Layout)
+        ------------------------------------------------
+        */
+        .gallery-container {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        .gallery-item {
+            margin-bottom: 20px;
+            break-inside: avoid;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 1s ease;
+            filter: grayscale(20%);
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0); }
+
+        /* ------------------------------------------------
+        TEXT CONTENT (Rich Layout)
+        ------------------------------------------------
+        */
+        .about-text-rich {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .text-col { flex: 1; font-size: 1.05rem; }
+        .text-col p { margin-bottom: 25px; }
+        .dropcap {
+            float: left;
+            font-size: 4.5rem;
+            line-height: 0.8;
+            padding-right: 15px;
+            color: var(--primary-gold);
+            font-family: 'Cormorant Garamond';
+        }
+
+        /* ------------------------------------------------
+        FOOTER
+        ------------------------------------------------
+        */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 80px 10% 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo { font-size: 2rem; margin-bottom: 20px; display: block; }
+        .footer-links h4 { margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-gold); }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; opacity: 0.7; font-size: 0.9rem; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+            .hero-content { padding-right: 0; margin-bottom: 50px; }
+            .services-grid, .gallery-container { grid-template-columns: 1fr; column-count: 1; }
+            .hero h1 { font-size: 3rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">HI5CLICKS</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Experience</a></li>
+            <li><a href="#gallery">Portfolio</a></li>
+            <li><a href="#about">Philosophy</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p>ESTABLISHED 2024</p>
+            <h1>The Art of Capturing <br><span class="serif">Stillness.</span></h1>
+            <p>At Hi5Clicks, we don’t just take photographs; we curate visual legacies. High-end imagery for those who value the preservation of a moment.</p>
+            <a href="#gallery" class="btn">Explore Work</a>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section class="section reveal" id="services">
+        <div class="section-header">
+            <p>What We Provide</p>
+            <h2>Elite Specialties</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Vogue Portraits</h3>
+                <p>Editorial-style portraiture that captures the essence of personality through sophisticated lighting and composition.</p>
+            </div>
+            <div class="service-card">
+                <h3>Legacy Weddings</h3>
+                <p>Documenting your union with a cinematic lens, focusing on the intimate details and raw emotions of your day.</p>
+            </div>
+            <div class="service-card">
+                <h3>Fine Art Commercial</h3>
+                <p>Elevating brand narratives through high-fidelity product photography and architectural storytelling.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="gallery">
+        <div class="section-header">
+            <p>The Portfolio</p>
+            <h2>Visual Chronicles</h2>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Wedding"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&q=80&w=800" alt="Portrait"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800" alt="Nature"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Event"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=800" alt="Couple"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800" alt="Fashion"></div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="about">
+        <div class="about-text-rich">
+            <div class="text-col">
+                <span class="dropcap">O</span>
+                <p>ur philosophy is rooted in the belief that every click should tell a story that transcends time. In a world saturated with fleeting digital content, Hi5Clicks stands as a bastion of permanence. We utilize state-of-the-art medium format technology combined with an old-world eye for composition.</p>
+                <p>We believe that photography is the only medium that allows humanity to pause the relentless flow of time. Whether it is the subtle glance during a wedding ceremony or the architectural lines of a skyscraper, we find the soul in the subject.</p>
+            </div>
+            <div class="text-col">
+                <p>The name "Hi5Clicks" represents our five core principles: Precision, Emotion, Narrative, Light, and Legacy. Every client engagement begins with a deep consultation to understand your vision, ensuring that the final output is not just a photograph, but an heirloom.</p>
+                <p>Join us in our studio or invite us to your destination; wherever light exists, we are ready to document your most significant milestones with unparalleled grace.</p>
+                <a href="#contact" class="btn">Inquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <span class="footer-logo serif">HI5CLICKS</span>
+                <p style="opacity: 0.6; font-size: 0.9rem;">Modern photography studio specializing in high-end lifestyle, commercial, and editorial work. Based in the city, traveling worldwide.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li>The Portfolio</li>
+                    <li>Studio Services</li>
+                    <li>Client Area</li>
+                    <li>Journal</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li>hello@hi5clicks.com</li>
+                    <li>+1 (555) 123-4567</li>
+                    <li>123 Creative Ave, NY</li>
+                    <li>Instagram / Twitter</li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; font-size: 0.7rem; opacity: 0.5;">
+            &copy; 2026 HI5CLICKS PHOTOGRAPHY STUDIO. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Effect for Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal Animations on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

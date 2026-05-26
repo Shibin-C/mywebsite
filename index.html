@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HI5 CLICKS — Photography Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;900&family=Lora:ital,wght@0,400;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#faf7f2;
+  --parchment:#f2ece0;
+  --linen:#e8dfd0;
+  --sand:#d4c5ad;
+  --forest:#2d4a3e;
+  --moss:#3d5c4f;
+  --leaf:#4a7a62;
+  --rust:#b85c38;
+  --terracotta:#c97a52;
+  --clay:#d9956a;
+  --ink:#1e1e1e;
+  --charcoal:#3a3530;
+  --warm-grey:#7a7068;
+  --light-grey:#b5afa6;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  cursor:default;
+}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;
+  background:var(--forest);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;
+  transition:opacity 0.9s ease, visibility 0.9s ease;
+}
+#loader.gone{opacity:0;visibility:hidden}
+.loader-box{text-align:center}
+.loader-hi{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:90px;
+  letter-spacing:-0.02em;
+  color:var(--cream);
+  line-height:0.85;
+  overflow:hidden;display:block;
+}
+.loader-hi span{
+  display:inline-block;
+  transform:translateY(110%);
+  animation:riseUp 0.7s cubic-bezier(.16,1,.3,1) forwards;
+}
+.loader-hi .c1{animation-delay:0.1s}
+.loader-hi .c2{animation-delay:0.17s}
+.loader-sub{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:300;font-size:14px;
+  letter-spacing:0.45em;
+  text-transform:uppercase;
+  color:var(--clay);
+  margin-top:12px;
+  opacity:0;
+  animation:fadeUp 0.6s 0.7s ease forwards;
+}
+.loader-rule{
+  width:0;height:1px;
+  background:var(--clay);
+  margin:16px auto 0;
+  animation:growLine 0.8s 0.9s ease forwards;
+}
+@keyframes riseUp{to{transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes growLine{to{width:140px}}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  height:68px;
+  padding:0 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(250,247,242,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color 0.3s;
+}
+header.scrolled{border-color:var(--linen)}
+.logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:26px;
+  letter-spacing:0.04em;
+  color:var(--forest);
+  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.logo-mark{
+  width:28px;height:28px;
+  background:var(--rust);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:#fff;
+  font-weight:700;
+  border-radius:50%;
+  flex-shrink:0;
+  animation:spinIn 0.6s 2s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes spinIn{from{transform:rotate(-180deg) scale(0)}to{transform:rotate(0) scale(1)}}
+nav{display:flex;gap:36px;align-items:center}
+nav a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:13px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--warm-grey);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+nav a:hover{color:var(--forest)}
+.nav-book{
+  background:var(--forest);
+  color:var(--cream) !important;
+  padding:9px 22px;
+  border-radius:2px;
+  transition:background 0.2s !important;
+}
+.nav-book:hover{background:var(--moss) !important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:68px;
+  overflow:hidden;
+  position:relative;
+}
+.hero-left{
+  padding:80px 52px 80px 52px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;
+  z-index:2;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:11px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--rust);
+  margin-bottom:36px;
+  opacity:0;animation:fadeUp 0.7s 1.8s ease forwards;
+}
+.hero-badge::before{
+  content:'';width:32px;height:1px;background:var(--rust);
+}
+.hero-title{
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(48px,5.5vw,80px);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-0.025em;
+  color:var(--forest);
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp 0.8s 2s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-title em{
+  font-style:italic;
+  color:var(--rust);
+  display:block;
+}
+.hero-body{
+  font-size:17px;font-weight:300;
+  line-height:1.85;
+  color:var(--warm-grey);
+  max-width:400px;
+  margin-bottom:52px;
+  opacity:0;animation:fadeUp 0.7s 2.2s ease forwards;
+}
+.hero-cta-row{
+  display:flex;gap:16px;align-items:center;
+  opacity:0;animation:fadeUp 0.7s 2.4s ease forwards;
+}
+.btn-primary{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;font-size:13px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  background:var(--rust);color:#fff;
+  border:none;padding:14px 32px;
+  cursor:pointer;border-radius:2px;
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-primary:hover{background:var(--terracotta);transform:translateY(-2px)}
+.btn-outline{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:13px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  background:transparent;color:var(--forest);
+  border:1.5px solid var(--forest);
+  padding:13px 28px;cursor:pointer;border-radius:2px;
+  transition:background 0.2s,color 0.2s;
+}
+.btn-outline:hover{background:var(--forest);color:var(--cream)}
+.hero-counter{
+  margin-top:64px;
+  display:flex;gap:40px;
+  padding-top:32px;
+  border-top:1px solid var(--linen);
+  opacity:0;animation:fadeUp 0.7s 2.6s ease forwards;
+}
+.counter-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:38px;letter-spacing:-0.01em;
+  color:var(--forest);line-height:1;
+}
+.counter-num sup{font-size:18px;color:var(--rust);vertical-align:super}
+.counter-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:400;font-size:11px;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--light-grey);
+  margin-top:4px;
+}
+
+.hero-right{
+  position:relative;
+  overflow:hidden;
+  background:var(--parchment);
+}
+.hero-collage{
+  position:absolute;inset:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:4px;
+}
+.hc-cell{
+  position:relative;overflow:hidden;
+  transition:transform 0.6s ease;
+}
+.hc-cell:hover{transform:scale(0.97)}
+.hc-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:52px;
+  transition:transform 0.7s cubic-bezier(.16,1,.3,1);
+}
+.hc-cell:hover .hc-inner{transform:scale(1.08)}
+.hc-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 16px 14px;
+  background:linear-gradient(to top,rgba(45,74,62,0.85),transparent);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:11px;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(250,247,242,0.9);
+  opacity:0;transition:opacity 0.3s;
+}
+.hc-cell:hover .hc-label{opacity:1}
+/* collage colors */
+.hc-wildlife{background:linear-gradient(160deg,#2a3d20 0%,#3d5a2a 50%,#4a6b35 100%)}
+.hc-landscape{background:linear-gradient(180deg,#1a2f4a 0%,#2d4a72 45%,#b87820 60%,#8a5810 100%)}
+.hc-candid{background:linear-gradient(150deg,#5a2a10 0%,#8a4020 60%,#b85830 100%)}
+.hc-portrait{background:linear-gradient(160deg,#3a2218 0%,#6a3a28 55%,#9a5a40 100%)}
+
+.hero-tape{
+  position:absolute;top:40px;left:-12px;
+  width:64px;height:20px;
+  background:rgba(201,122,82,0.35);
+  transform:rotate(-8deg);
+  pointer-events:none;
+  z-index:5;
+}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:11px;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--rust);
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:20px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--linen)}
+
+/* ── FILTER BAR ── */
+.filter-wrap{
+  padding:0 52px;
+  background:var(--parchment);
+  border-top:1px solid var(--linen);
+  border-bottom:1px solid var(--linen);
+}
+.filter-bar{
+  display:flex;gap:0;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;font-size:12px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--light-grey);
+  background:none;border:none;
+  padding:18px 28px;
+  cursor:pointer;
+  position:relative;
+  white-space:nowrap;
+  transition:color 0.2s;
+  flex-shrink:0;
+}
+.filter-btn::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:3px;background:var(--rust);
+  transform:scaleX(0);
+  transition:transform 0.3s cubic-bezier(.16,1,.3,1);
+  transform-origin:left;
+}
+.filter-btn:hover{color:var(--charcoal)}
+.filter-btn.active{color:var(--forest)}
+.filter-btn.active::before{transform:scaleX(1)}
+.fcount{
+  font-size:9px;color:var(--clay);
+  margin-left:4px;vertical-align:super;
+  font-weight:400;
+}
+
+/* ── GALLERY ── */
+.gallery-wrap{
+  padding:60px 52px;
+  background:var(--cream);
+}
+.gallery-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:44px;
+}
+.gallery-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(32px,4vw,52px);
+  font-weight:700;
+  font-style:italic;
+  color:var(--forest);
+  letter-spacing:-0.02em;
+  line-height:1;
+}
+.gallery-showing{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--light-grey);
+}
+
+/* Masonry */
+.masonry{columns:3;column-gap:20px}
+@media(max-width:900px){.masonry{columns:2}}
+@media(max-width:560px){.masonry{columns:1}}
+
+.card{
+  break-inside:avoid;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  border-radius:3px;
+  transition:box-shadow 0.4s ease;
+}
+.card:hover{box-shadow:0 16px 48px rgba(45,74,62,0.18)}
+.card-img{
+  width:100%;display:block;
+  transition:transform 0.7s cubic-bezier(.16,1,.3,1);
+}
+.card:hover .card-img{transform:scale(1.05)}
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(30,30,20,0.78) 0%,rgba(30,30,20,0) 55%);
+  opacity:0;
+  transition:opacity 0.35s ease;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px 18px;
+}
+.card:hover .card-overlay{opacity:1}
+.card-cat{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:10px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--clay);margin-bottom:5px;
+}
+.card-name{
+  font-family:'Libre Baskerville',serif;
+  font-size:17px;font-weight:400;font-style:italic;
+  color:var(--cream);line-height:1.3;margin-bottom:8px;
+}
+.card-exif{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:0.08em;
+  color:rgba(250,247,242,0.6);
+}
+.card-plus{
+  position:absolute;top:14px;right:14px;
+  width:32px;height:32px;
+  background:rgba(250,247,242,0.15);
+  border:1px solid rgba(250,247,242,0.35);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:#fff;
+  opacity:0;
+  transition:opacity 0.3s,background 0.2s;
+}
+.card:hover .card-plus{opacity:1}
+.card-plus:hover{background:rgba(250,247,242,0.3)}
+
+/* placeholder cells */
+.ph{width:100%;display:block;position:relative}
+.ph-icon{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:44px;
+  color:rgba(255,255,255,0.1);
+  pointer-events:none;
+}
+/* greens / nature */
+.bg-w1{background:linear-gradient(150deg,#2a3d20 0%,#3d5530 60%,#506838 100%)}
+.bg-w2{background:linear-gradient(130deg,#1e3020 0%,#2d4a2a 55%,#3f6038 100%)}
+.bg-w3{background:linear-gradient(160deg,#3d4a1a 0%,#546228 60%,#6a7a30 100%)}
+.bg-w4{background:linear-gradient(140deg,#1a2a18 0%,#2d3f25 55%,#405535 100%)}
+/* blues + warmth */
+.bg-l1{background:linear-gradient(180deg,#1e2e48 0%,#2d4065 40%,#c08830 60%,#885510 100%)}
+.bg-l2{background:linear-gradient(160deg,#263545 0%,#354860 60%,#455878 100%)}
+.bg-l3{background:linear-gradient(150deg,#3a1508 0%,#601d0c 50%,#8a2810 100%)}
+.bg-l4{background:linear-gradient(180deg,#0f1e30 0%,#1a2f48 50%,#608088 100%)}
+/* warm terracotta */
+.bg-c1{background:linear-gradient(150deg,#5a2a10 0%,#8a4020 60%,#b85a30 100%)}
+.bg-c2{background:linear-gradient(160deg,#3a1818 0%,#5a2828 55%,#7a3838 100%)}
+.bg-c3{background:linear-gradient(140deg,#1a2a10 0%,#2d3f1a 55%,#405528 100%)}
+/* street */
+.bg-s1{background:linear-gradient(150deg,#2a2520 0%,#3a332c 55%,#4a4038 100%)}
+.bg-s2{background:linear-gradient(150deg,#20180e 0%,#352a1a 60%,#4a3820 100%)}
+.bg-s3{background:linear-gradient(130deg,#18182a 0%,#252540 60%,#353555 100%)}
+/* portraits */
+.bg-p1{background:linear-gradient(160deg,#4a2518 0%,#703a28 55%,#9a5038 100%)}
+.bg-p2{background:linear-gradient(160deg,#2a1810 0%,#3d2518 55%,#553220 100%)}
+.bg-p3{background:linear-gradient(150deg,#1a1a28 0%,#282838 60%,#383848 100%)}
+.bg-p4{background:linear-gradient(160deg,#402010 0%,#5a2e18 55%,#7a3e22 100%)}
+
+.card.hidden{display:none}
+
+/* ── FEATURED EDITORIAL ── */
+.editorial{
+  padding:0 52px 80px;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+  height:65vh;min-height:440px;
+}
+.ed-main{position:relative;overflow:hidden;border-radius:3px;cursor:pointer}
+.ed-side{display:grid;grid-template-rows:1fr 1fr;gap:20px}
+.ed-cell{position:relative;overflow:hidden;border-radius:3px;cursor:pointer}
+.ed-bg{width:100%;height:100%;object-fit:cover}
+.ed-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.7s cubic-bezier(.16,1,.3,1);
+  font-size:72px;
+}
+.ed-main:hover .ed-inner,
+.ed-cell:hover .ed-inner{transform:scale(1.05)}
+.ed-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:40px 28px 24px;
+  background:linear-gradient(to top,rgba(30,30,20,0.8) 0%,transparent 100%);
+}
+.ed-cat{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:10px;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--clay);margin-bottom:6px;
+}
+.ed-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(18px,2.5vw,28px);
+  font-weight:700;color:var(--cream);
+  line-height:1.2;
+}
+.ed-overlay{
+  position:absolute;inset:0;
+  background:rgba(45,74,62,0.1);opacity:0;
+  transition:opacity 0.3s;
+}
+.ed-main:hover .ed-overlay,
+.ed-cell:hover .ed-overlay{opacity:1}
+
+/* ── ABOUT ── */
+.about{
+  background:var(--parchment);
+  padding:100px 52px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  border-top:1px solid var(--linen);
+}
+.about-left{}
+.about-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:11px;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--rust);
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.about-eyebrow::before{content:'';width:28px;height:1px;background:var(--rust)}
+.about-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(36px,4vw,56px);
+  font-weight:700;letter-spacing:-0.025em;
+  line-height:1.05;
+  color:var(--forest);margin-bottom:28px;
+}
+.about-title em{font-style:italic;color:var(--rust)}
+.about-body{
+  font-size:17px;font-weight:300;
+  line-height:1.9;color:var(--warm-grey);
+  margin-bottom:36px;
+}
+.award-row{
+  display:flex;gap:16px;align-items:baseline;
+  padding:14px 0;
+  border-bottom:1px solid var(--linen);
+}
+.aw-yr{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:12px;
+  letter-spacing:0.1em;color:var(--rust);
+  flex-shrink:0;width:36px;
+}
+.aw-txt{font-size:14px;font-weight:300;color:var(--charcoal);line-height:1.5}
+
+.about-right{position:relative}
+.portrait-wrap{
+  width:100%;aspect-ratio:3/4;
+  background:linear-gradient(160deg,#4a2518 0%,#703a28 55%,#9a5038 100%);
+  border-radius:3px;overflow:hidden;position:relative;
+}
+.portrait-deco{
+  position:absolute;top:-20px;right:-20px;
+  width:120px;height:120px;
+  border:2px solid var(--rust);
+  border-radius:50%;opacity:0.3;
+}
+.portrait-deco2{
+  position:absolute;bottom:-12px;left:-12px;
+  width:80px;height:80px;
+  background:var(--rust);opacity:0.15;
+  border-radius:3px;
+}
+.portrait-ph{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:14px;
+}
+.portrait-ph-icon{font-size:72px;opacity:0.15}
+.portrait-ph-txt{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:0.25em;
+  text-transform:uppercase;color:rgba(250,247,242,0.3);
+  text-align:center;
+}
+
+/* ── STRIPS / MARQUEE ── */
+.marquee-wrap{
+  background:var(--forest);
+  padding:16px 0;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.marquee-inner{
+  display:flex;gap:0;white-space:nowrap;
+  animation:marquee 18s linear infinite;
+}
+.marquee-item{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:13px;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--cream);
+  padding:0 40px;
+  opacity:0.7;
+  flex-shrink:0;
+}
+.marquee-dot{
+  color:var(--clay);opacity:1 !important;
+  padding:0 4px;
+}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── CONTACT ── */
+.contact{
+  padding:100px 52px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  background:var(--cream);
+}
+.contact-left{}
+.contact-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(42px,5vw,72px);
+  font-weight:700;
+  letter-spacing:-0.025em;
+  line-height:1;
+  color:var(--forest);
+  margin-bottom:24px;
+}
+.contact-title em{font-style:italic;color:var(--rust);display:block}
+.contact-body{
+  font-size:17px;font-weight:300;
+  line-height:1.85;color:var(--warm-grey);
+  margin-bottom:44px;
+}
+.contact-btns{display:flex;gap:14px;flex-wrap:wrap}
+.contact-right{
+  background:var(--parchment);
+  border-radius:4px;
+  border:1px solid var(--linen);
+  padding:48px 40px;
+}
+.contact-right h3{
+  font-family:'Libre Baskerville',serif;
+  font-size:22px;font-weight:700;font-style:italic;
+  color:var(--forest);margin-bottom:32px;
+}
+.form-group{margin-bottom:20px}
+.form-group label{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:11px;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--warm-grey);margin-bottom:8px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  background:var(--cream);
+  border:1px solid var(--linen);
+  border-radius:2px;
+  padding:12px 16px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;color:var(--ink);
+  outline:none;
+  transition:border-color 0.2s;
+  resize:none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--forest)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-form{
+  width:100%;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:14px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  background:var(--rust);color:#fff;
+  border:none;padding:16px;
+  border-radius:2px;cursor:pointer;
+  transition:background 0.2s,transform 0.2s;
+  margin-top:8px;
+}
+.btn-form:hover{background:var(--terracotta);transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--forest);
+  padding:40px 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.foot-logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:24px;
+  letter-spacing:0.04em;color:var(--cream);
+  display:flex;align-items:center;gap:8px;
+}
+.foot-mark{
+  width:24px;height:24px;background:var(--rust);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#fff;font-weight:700;
+}
+.foot-copy{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:0.15em;
+  text-transform:uppercase;color:rgba(250,247,242,0.35);
+}
+.foot-socials{display:flex;gap:28px}
+.foot-socials a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(250,247,242,0.45);
+  text-decoration:none;transition:color 0.2s;
+}
+.foot-socials a:hover{color:var(--clay)}
+
+/* ── LIGHTBOX ── */
+#lb{
+  position:fixed;inset:0;
+  background:rgba(242,236,224,0.97);
+  backdrop-filter:blur(8px);
+  z-index:1000;
+  display:none;
+  align-items:center;justify-content:center;
+  flex-direction:column;
+  padding:48px;
+}
+#lb.open{display:flex;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.lb-close{
+  position:absolute;top:28px;right:44px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:12px;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--warm-grey);
+  background:none;border:none;cursor:pointer;
+  transition:color 0.2s;
+}
+.lb-close:hover{color:var(--forest)}
+.lb-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:none;border:none;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:28px;letter-spacing:0.05em;
+  color:var(--sand);cursor:pointer;padding:20px;
+  transition:color 0.2s;
+}
+.lb-arrow:hover{color:var(--forest)}
+#lb-prev{left:16px}
+#lb-next{right:16px}
+.lb-box{
+  max-width:60vw;
+  display:flex;flex-direction:column;align-items:center;
+}
+.lb-ph{
+  width:500px;max-width:60vw;height:420px;
+  border-radius:3px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:80px;
+  margin-bottom:28px;
+  box-shadow:0 20px 60px rgba(45,74,62,0.2);
+}
+.lb-cat{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:500;font-size:11px;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:8px;
+}
+.lb-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:26px;font-weight:400;font-style:italic;
+  color:var(--forest);margin-bottom:8px;text-align:center;
+}
+.lb-meta{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;letter-spacing:0.1em;
+  color:var(--light-grey);
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-hi"><span class="c1">HI5</span></div>
+    <div class="loader-hi" style="font-size:50px;letter-spacing:0.08em"><span class="c2" style="animation-delay:0.3s">CLICKS</span></div>
+    <div class="loader-sub">Photography Portfolio</div>
+    <div class="loader-rule"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <a class="logo" href="#">
+    <span class="logo-mark">H5</span>
+    HI5 CLICKS
+  </a>
+  <nav>
+    <a href="#works">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-book">Book Session</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Wildlife · Landscape · Portrait · Street · Candid</div>
+    <h1 class="hero-title">
+      Every Frame<br>
+      <em>Tells a Story</em>
+    </h1>
+    <p class="hero-body">
+      Award-winning photography from five disciplines — nature's raw power, 
+      sweeping vistas, intimate portraits, and the living pulse of city streets.
+    </p>
+    <div class="hero-cta-row">
+      <button class="btn-primary" onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">View Portfolio</button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
+    </div>
+    <div class="hero-counter">
+      <div>
+        <div class="counter-num">12<sup>K</sup></div>
+        <div class="counter-label">Photos Shot</div>
+      </div>
+      <div>
+        <div class="counter-num">80<sup>+</sup></div>
+        <div class="counter-label">Countries</div>
+      </div>
+      <div>
+        <div class="counter-num">340<sup>+</sup></div>
+        <div class="counter-label">Awards</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-tape"></div>
+    <div class="hero-collage">
+      <div class="hc-cell hc-wildlife" onclick="openLb('wl-1')">
+        <div class="hc-inner">🐘</div>
+        <div class="hc-label">Wildlife</div>
+      </div>
+      <div class="hc-cell hc-landscape" onclick="openLb('ls-1')">
+        <div class="hc-inner">🌄</div>
+        <div class="hc-label">Landscape</div>
+      </div>
+      <div class="hc-cell hc-candid" onclick="openLb('cd-1')">
+        <div class="hc-inner">😄</div>
+        <div class="hc-label">Candid</div>
+      </div>
+      <div class="hc-cell hc-portrait" onclick="openLb('pt-1')">
+        <div class="hc-inner">👤</div>
+        <div class="hc-label">Portrait</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Wildlife</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Landscape</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Candid</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Street</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Portrait</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Hi5 Clicks</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Wildlife</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Landscape</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Candid</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Street</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Portrait</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Hi5 Clicks</span><span class="marquee-item marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- FEATURED EDITORIAL -->
+<section style="padding:72px 52px 0;" id="works">
+  <div class="sec-label">Featured Works</div>
+  <div style="font-family:'Libre Baskerville',serif;font-size:clamp(28px,3.5vw,44px);font-weight:700;font-style:italic;color:var(--forest);letter-spacing:-0.02em;margin-bottom:44px;">Editor's Picks</div>
+</section>
+<div class="editorial">
+  <div class="ed-main" onclick="openLb('wl-1')">
+    <div class="bg-w1 ed-inner" style="height:100%;font-size:100px;position:absolute;inset:0;border-radius:3px;">🦁</div>
+    <div class="ed-overlay"></div>
+    <div class="ed-caption">
+      <div class="ed-cat">Wildlife · Serengeti</div>
+      <div class="ed-title">The Lion's Golden Hour</div>
+    </div>
+  </div>
+  <div class="ed-side">
+    <div class="ed-cell" onclick="openLb('ls-1')">
+      <div class="bg-l1 ed-inner" style="height:100%;position:absolute;inset:0;font-size:64px;">🌄</div>
+      <div class="ed-overlay"></div>
+      <div class="ed-caption">
+        <div class="ed-cat">Landscape · Iceland</div>
+        <div class="ed-title">Midnight Solstice</div>
+      </div>
+    </div>
+    <div class="ed-cell" onclick="openLb('pt-1')">
+      <div class="bg-p1 ed-inner" style="height:100%;position:absolute;inset:0;font-size:64px;">👁</div>
+      <div class="ed-overlay"></div>
+      <div class="ed-caption">
+        <div class="ed-cat">Portrait · Varanasi</div>
+        <div class="ed-title">Eyes of the River</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-wrap" id="gallery-anchor">
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="doFilter('all',this)">All<span class="fcount">18</span></button>
+    <button class="filter-btn" onclick="doFilter('wildlife',this)">Wildlife<span class="fcount">04</span></button>
+    <button class="filter-btn" onclick="doFilter('landscape',this)">Landscape<span class="fcount">04</span></button>
+    <button class="filter-btn" onclick="doFilter('candid',this)">Candid<span class="fcount">03</span></button>
+    <button class="filter-btn" onclick="doFilter('street',this)">Street<span class="fcount">04</span></button>
+    <button class="filter-btn" onclick="doFilter('portrait',this)">Portrait<span class="fcount">04</span></button>
+  </div>
+</div>
+
+<!-- MASONRY GALLERY -->
+<div class="gallery-wrap">
+  <div class="gallery-header">
+    <div class="gallery-title" id="gal-title">All Works</div>
+    <div class="gallery-showing" id="gal-count">18 Photographs</div>
+  </div>
+
+  <div class="masonry" id="masonry">
+
+    <div class="card" data-cat="wildlife" onclick="openLb('wl-1')">
+      <div class="ph bg-w1" style="height:310px"><div class="ph-icon">🐘</div></div>
+      <div class="card-overlay"><div class="card-cat">Wildlife</div><div class="card-name">Giants of the Savanna</div><div class="card-exif">Amboseli, Kenya · f/5.6 · 1/800s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="landscape" onclick="openLb('ls-1')">
+      <div class="ph bg-l1" style="height:240px"><div class="ph-icon">🌊</div></div>
+      <div class="card-overlay"><div class="card-cat">Landscape</div><div class="card-name">Patagonian Edge</div><div class="card-exif">Torres del Paine · f/11 · 2s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="portrait" onclick="openLb('pt-1')">
+      <div class="ph bg-p1" style="height:390px"><div class="ph-icon">👁</div></div>
+      <div class="card-overlay"><div class="card-cat">Portrait</div><div class="card-name">Monsoon Woman</div><div class="card-exif">Varanasi, India · f/1.8 · 1/250s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="street" onclick="openLb('st-1')">
+      <div class="ph bg-s1" style="height:270px"><div class="ph-icon">🌃</div></div>
+      <div class="card-overlay"><div class="card-cat">Street</div><div class="card-name">3 AM, Shibuya</div><div class="card-exif">Tokyo, Japan · f/2.8 · 1/60s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="wildlife" onclick="openLb('wl-2')">
+      <div class="ph bg-w2" style="height:350px"><div class="ph-icon">🐆</div></div>
+      <div class="card-overlay"><div class="card-cat">Wildlife</div><div class="card-name">Leopard at Dawn</div><div class="card-exif">Masai Mara · f/6.3 · 1/1000s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="candid" onclick="openLb('cd-1')">
+      <div class="ph bg-c1" style="height:290px"><div class="ph-icon">😄</div></div>
+      <div class="card-overlay"><div class="card-cat">Candid</div><div class="card-name">Market Joy</div><div class="card-exif">Marrakech · f/2.0 · 1/500s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="landscape" onclick="openLb('ls-2')">
+      <div class="ph bg-l2" style="height:255px"><div class="ph-icon">🏔</div></div>
+      <div class="card-overlay"><div class="card-cat">Landscape</div><div class="card-name">Himalayan Silence</div><div class="card-exif">Ladakh, India · f/8 · 1/320s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="portrait" onclick="openLb('pt-2')">
+      <div class="ph bg-p2" style="height:330px"><div class="ph-icon">🎭</div></div>
+      <div class="card-overlay"><div class="card-cat">Portrait</div><div class="card-name">The Weaver's Gaze</div><div class="card-exif">Kyoto, Japan · f/2.0 · 1/200s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="street" onclick="openLb('st-2')">
+      <div class="ph bg-s2" style="height:215px"><div class="ph-icon">🚂</div></div>
+      <div class="card-overlay"><div class="card-cat">Street</div><div class="card-name">Rush Hour Geometry</div><div class="card-exif">Hong Kong · f/8 · 1/125s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="wildlife" onclick="openLb('wl-3')">
+      <div class="ph bg-w3" style="height:280px"><div class="ph-icon">🦅</div></div>
+      <div class="card-overlay"><div class="card-cat">Wildlife</div><div class="card-name">Wingspan</div><div class="card-exif">Scottish Highlands · f/7.1 · 1/2000s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="candid" onclick="openLb('cd-2')">
+      <div class="ph bg-c2" style="height:360px"><div class="ph-icon">💃</div></div>
+      <div class="card-overlay"><div class="card-cat">Candid</div><div class="card-name">Flamenco Between Sets</div><div class="card-exif">Sevilla · f/1.4 · 1/400s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="landscape" onclick="openLb('ls-3')">
+      <div class="ph bg-l3" style="height:240px"><div class="ph-icon">🌋</div></div>
+      <div class="card-overlay"><div class="card-cat">Landscape</div><div class="card-name">Lava Field at Dusk</div><div class="card-exif">Iceland · f/11 · 30s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="portrait" onclick="openLb('pt-3')">
+      <div class="ph bg-p3" style="height:320px"><div class="ph-icon">🌹</div></div>
+      <div class="card-overlay"><div class="card-cat">Portrait</div><div class="card-name">Afternoon Light</div><div class="card-exif">Florence, Italy · f/1.6 · 1/320s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="wildlife" onclick="openLb('wl-4')">
+      <div class="ph bg-w4" style="height:275px"><div class="ph-icon">🐊</div></div>
+      <div class="card-overlay"><div class="card-cat">Wildlife</div><div class="card-name">Ancient Patience</div><div class="card-exif">Okavango · f/5.6 · 1/640s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="street" onclick="openLb('st-3')">
+      <div class="ph bg-s3" style="height:300px"><div class="ph-icon">☔</div></div>
+      <div class="card-overlay"><div class="card-cat">Street</div><div class="card-name">Reflections, Paris Rain</div><div class="card-exif">Paris · f/2.0 · 1/60s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="candid" onclick="openLb('cd-3')">
+      <div class="ph bg-c3" style="height:255px"><div class="ph-icon">👴</div></div>
+      <div class="card-overlay"><div class="card-cat">Candid</div><div class="card-name">The Storyteller</div><div class="card-exif">Cairo · f/2.8 · 1/200s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="landscape" onclick="openLb('ls-4')">
+      <div class="ph bg-l4" style="height:295px"><div class="ph-icon">🌌</div></div>
+      <div class="card-overlay"><div class="card-cat">Landscape</div><div class="card-name">Milky Way, Atacama</div><div class="card-exif">Chile · f/1.8 · 25s · ISO6400</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="street" onclick="openLb('st-4')">
+      <div class="ph bg-s1" style="height:260px;filter:hue-rotate(40deg)"><div class="ph-icon">🕌</div></div>
+      <div class="card-overlay"><div class="card-cat">Street</div><div class="card-name">Evening Call, Istanbul</div><div class="card-exif">Istanbul · f/4 · 1/100s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+    <div class="card" data-cat="portrait" onclick="openLb('pt-4')">
+      <div class="ph bg-p4" style="height:340px"><div class="ph-icon">🧿</div></div>
+      <div class="card-overlay"><div class="card-cat">Portrait</div><div class="card-name">The Fisherman's Son</div><div class="card-exif">Kerala, India · f/2.2 · 1/180s</div></div>
+      <div class="card-plus">+</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="about-eyebrow">The Photographer</div>
+    <h2 class="about-title">Five genres,<br><em>one vision.</em></h2>
+    <p class="about-body">
+      Hi5 Clicks is a photography practice rooted in the belief that great images come from 
+      genuine curiosity — about animals, about land, about people and the cities they build. 
+      Every frame is a conversation between light and life.
+    </p>
+    <p class="about-body">
+      Based in India, shooting worldwide. Available for editorial commissions, 
+      fine art prints, commercial work, and immersive photo tours.
+    </p>
+    <div>
+      <div class="award-row"><div class="aw-yr">2024</div><div class="aw-txt">World Press Photo — Wildlife Category, First Place</div></div>
+      <div class="award-row"><div class="aw-yr">2023</div><div class="aw-txt">National Geographic Photo Contest — Grand Prize</div></div>
+      <div class="award-row"><div class="aw-yr">2022</div><div class="aw-txt">Sony World Photography Awards — Open Category</div></div>
+      <div class="award-row"><div class="aw-yr">2021</div><div class="aw-txt">Leica Oskar Barnack Award — Shortlisted</div></div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="portrait-deco"></div>
+    <div class="portrait-deco2"></div>
+    <div class="portrait-wrap">
+      <div class="portrait-ph">
+        <div class="portrait-ph-icon">📷</div>
+        <div class="portrait-ph-txt">Replace with<br>photographer portrait</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 2 -->
+<div class="marquee-wrap">
+  <div class="marquee-inner" style="animation-direction:reverse;animation-duration:22s">
+    <span class="marquee-item">Kerala, India</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Serengeti</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Tokyo</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Iceland</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Patagonia</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Marrakech</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Ladakh</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Paris</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Kerala, India</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Serengeti</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Tokyo</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Iceland</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Patagonia</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">Marrakech</span><span class="marquee-item marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <div class="sec-label" style="margin-bottom:20px">Get in Touch</div>
+    <h2 class="contact-title">
+      Let's Make<br><em>Something</em><br>Beautiful.
+    </h2>
+    <p class="contact-body">
+      Available for editorial assignments, brand campaigns, 
+      fine art prints, and private portrait sessions — anywhere in the world.
+    </p>
+    <div class="contact-btns">
+      <button class="btn-primary">hello@hi5clicks.com</button>
+    </div>
+    <div style="margin-top:48px;display:flex;flex-direction:column;gap:18px;">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:6px">Based In</div>
+        <div style="font-family:'Lora',serif;font-style:italic;font-size:16px;color:var(--charcoal)">Thrissur, Kerala — Available Worldwide</div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--rust);margin-bottom:6px">Follow</div>
+        <div style="display:flex;gap:20px">
+          <a href="#" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--forest);text-decoration:none">Instagram</a>
+          <a href="#" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--forest);text-decoration:none">500px</a>
+          <a href="#" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--forest);text-decoration:none">Behance</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <h3>Send an Enquiry</h3>
+    <div class="form-row">
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="Arjun"></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Menon"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="arjun@email.com"></div>
+    <div class="form-group">
+      <label>Service</label>
+      <select>
+        <option>Wildlife / Nature</option>
+        <option>Landscape</option>
+        <option>Portrait Session</option>
+        <option>Street / Documentary</option>
+        <option>Commercial / Brand</option>
+        <option>Fine Art Print</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Tell me about your project..."></textarea></div>
+    <button class="btn-form">Send Message →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">
+    <span class="foot-mark">H5</span>
+    HI5 CLICKS
+  </div>
+  <div class="foot-copy">© 2026 Hi5 Clicks Photography. All rights reserved.</div>
+  <div class="foot-socials">
+    <a href="#">Instagram</a>
+    <a href="#">500px</a>
+    <a href="#">Behance</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lb">
+  <button class="lb-close" onclick="closeLb()">✕ Close</button>
+  <button class="lb-arrow" id="lb-prev" onclick="navLb(-1)">←</button>
+  <button class="lb-arrow" id="lb-next" onclick="navLb(1)">→</button>
+  <div class="lb-box">
+    <div class="lb-ph" id="lb-ph"></div>
+    <div class="lb-cat" id="lb-cat"></div>
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-meta" id="lb-meta"></div>
+  </div>
+</div>
+
+<script>
+// LOADER
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('gone'),2400)
+});
+
+// HEADER SCROLL
+window.addEventListener('scroll',()=>{
+  document.getElementById('hdr').classList.toggle('scrolled',scrollY>50)
+});
+
+// PHOTO DATA
+const photos={
+  'wl-1':{cat:'Wildlife',title:"Giants of the Savanna",meta:'Amboseli, Kenya · 2023 · f/5.6 · 1/800s',icon:'🐘',bg:'#2d4a2d'},
+  'wl-2':{cat:'Wildlife',title:"Leopard at Dawn",meta:'Masai Mara · 2023 · f/6.3 · 1/1000s',icon:'🐆',bg:'#1e3020'},
+  'wl-3':{cat:'Wildlife',title:"Wingspan",meta:'Scottish Highlands · 2023 · f/7.1 · 1/2000s',icon:'🦅',bg:'#3d4a1a'},
+  'wl-4':{cat:'Wildlife',title:"Ancient Patience",meta:'Okavango, Botswana · 2023 · f/5.6 · 1/640s',icon:'🐊',bg:'#1a2a18'},
+  'ls-1':{cat:'Landscape',title:"Patagonian Edge",meta:'Torres del Paine · 2022 · f/11 · 2s',icon:'🌊',bg:'#1e2e48'},
+  'ls-2':{cat:'Landscape',title:"Himalayan Silence",meta:'Ladakh, India · 2022 · f/8 · 1/320s',icon:'🏔',bg:'#263545'},
+  'ls-3':{cat:'Landscape',title:"Lava Field at Dusk",meta:'Iceland · 2023 · f/11 · 30s',icon:'🌋',bg:'#3a1508'},
+  'ls-4':{cat:'Landscape',title:"Milky Way, Atacama",meta:'Chile · 2023 · f/1.8 · 25s',icon:'🌌',bg:'#0f1e30'},
+  'cd-1':{cat:'Candid',title:"Market Joy",meta:'Marrakech, Morocco · 2022 · f/2.0 · 1/500s',icon:'😄',bg:'#5a2a10'},
+  'cd-2':{cat:'Candid',title:"Flamenco Between Sets",meta:'Sevilla, Spain · 2022 · f/1.4 · 1/400s',icon:'💃',bg:'#3a1818'},
+  'cd-3':{cat:'Candid',title:"The Storyteller",meta:'Cairo, Egypt · 2022 · f/2.8 · 1/200s',icon:'👴',bg:'#1a2a10'},
+  'st-1':{cat:'Street',title:"3 AM, Shibuya",meta:'Tokyo, Japan · 2023 · f/2.8 · 1/60s',icon:'🌃',bg:'#2a2520'},
+  'st-2':{cat:'Street',title:"Rush Hour Geometry",meta:'Hong Kong · 2022 · f/8 · 1/125s',icon:'🚂',bg:'#20180e'},
+  'st-3':{cat:'Street',title:"Reflections, Paris Rain",meta:'Paris, France · 2022 · f/2.0 · 1/60s',icon:'☔',bg:'#18182a'},
+  'st-4':{cat:'Street',title:"Evening Call, Istanbul",meta:'Istanbul · 2023 · f/4 · 1/100s',icon:'🕌',bg:'#28220e'},
+  'pt-1':{cat:'Portrait',title:"Monsoon Woman",meta:'Varanasi, India · 2023 · f/1.8 · 1/250s',icon:'👁',bg:'#4a2518'},
+  'pt-2':{cat:'Portrait',title:"The Weaver's Gaze",meta:'Kyoto, Japan · 2023 · f/2.0 · 1/200s',icon:'🎭',bg:'#2a1810'},
+  'pt-3':{cat:'Portrait',title:"Afternoon Light",meta:'Florence, Italy · 2023 · f/1.6 · 1/320s',icon:'🌹',bg:'#1a1a28'},
+  'pt-4':{cat:'Portrait',title:"The Fisherman's Son",meta:'Kerala, India · 2023 · f/2.2 · 1/180s',icon:'🧿',bg:'#402010'},
+};
+const order=Object.keys(photos);
+let current=null;
+
+function openLb(id){
+  current=id;const d=photos[id];if(!d)return;
+  const ph=document.getElementById('lb-ph');
+  ph.style.background=d.bg;ph.textContent=d.icon;
+  document.getElementById('lb-cat').textContent=d.cat;
+  document.getElementById('lb-title').textContent=d.title;
+  document.getElementById('lb-meta').textContent=d.meta;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+function navLb(dir){
+  const i=order.indexOf(current);
+  openLb(order[(i+dir+order.length)%order.length]);
+}
+document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)closeLb()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft')navLb(-1);
+  if(e.key==='ArrowRight')navLb(1);
+});
+
+// FILTER
+const cats={all:{t:'All Works',c:18},wildlife:{t:'Wildlife',c:4},landscape:{t:'Landscape',c:4},candid:{t:'Candid',c:3},street:{t:'Street',c:4},portrait:{t:'Portrait',c:4}};
+function doFilter(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(c=>{
+    const show=cat==='all'||c.dataset.cat===cat;
+    c.style.display=show?'block':'none';
+    if(show){c.style.animation='none';void c.offsetWidth;c.style.animation='fadeUp 0.4s ease'}
+  });
+  document.getElementById('gal-title').textContent=cats[cat].t;
+  document.getElementById('gal-count').textContent=cats[cat].c+' Photographs';
+}
+
+// SCROLL REVEAL
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.card').forEach((c,i)=>{
+    c.style.opacity='0';
+    c.style.transform='translateY(24px)';
+    c.style.transition=`opacity 0.55s ${i*0.04}s ease, transform 0.55s ${i*0.04}s ease`;
+    io.observe(c);
+  });
+}
+</script>
+</body>
+</html>

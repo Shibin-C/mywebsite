@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A detailed guide to digital business cards: what they are, how they work, key features, benefits, use cases and how to create one.">
+<title>Digital Business Card — The Complete Guide</title>
+<style>
+:root{
+  --ink:#17243b;--muted:#617089;--blue:#2563eb;--blue2:#0ea5e9;
+  --pale:#eff6ff;--line:#e3eaf3;--paper:#fff;--bg:#f5f8fc;
+  --green:#0f9f78;--shadow:0 18px 50px rgba(26,48,85,.09)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.75}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{height:68px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+.nav{width:min(1160px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:850;letter-spacing:-.5px;font-size:18px}.brand span{color:var(--blue)}
+.navlinks{display:flex;gap:21px;font-size:13px;font-weight:650;color:#52617a}
+.hero{background:linear-gradient(125deg,#10234b 0%,#174b9c 55%,#0e91c4 100%);color:#fff;padding:78px 0 72px;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;width:520px;height:520px;border:1px solid #ffffff26;border-radius:50%;right:-130px;top:-230px;box-shadow:0 0 0 55px #ffffff0b,0 0 0 110px #ffffff08}
+.wrap{width:min(1060px,90%);margin:auto}
+.eyebrow{text-transform:uppercase;letter-spacing:2.4px;font-size:11px;font-weight:800;color:#bfdbfe}
+.hero h1{font-size:clamp(38px,6vw,66px);line-height:1.08;letter-spacing:-2.3px;max-width:760px;margin:16px 0 22px}
+.hero p{font-size:18px;color:#e0edff;max-width:720px;margin:0}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pill{border:1px solid #ffffff45;background:#ffffff12;border-radius:30px;padding:7px 13px;font-size:12px;color:#f2f7ff}
+main{padding:42px 0 80px}
+.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:30px;align-items:start}
+.toc{position:sticky;top:90px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.toc h3{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#7b879b;margin:0 0 12px}
+.toc a{display:block;padding:7px 0;color:#52617a;font-size:13px;font-weight:600;border-bottom:1px solid #f0f3f8}
+.toc a:last-child{border:0}
+.content{min-width:0}
+.section{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:32px 34px;margin-bottom:22px;box-shadow:0 8px 28px rgba(26,48,85,.035)}
+.section h2{font-size:27px;letter-spacing:-.7px;line-height:1.25;margin:0 0 15px}
+.section h3{font-size:18px;margin:25px 0 8px}
+.section p{color:#53627a;margin:10px 0}
+.lead{font-size:17px;color:#42536d!important}
+.callout{background:var(--pale);border-left:4px solid var(--blue);border-radius:9px;padding:16px 18px;margin:20px 0;color:#29466f}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+.card{border:1px solid var(--line);border-radius:13px;padding:17px;background:#fff}
+.card .num{font-size:12px;font-weight:800;color:var(--blue);letter-spacing:1px}
+.card h3{margin:5px 0 5px;font-size:16px}
+.card p{font-size:14px;margin:0}
+.feature-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px;margin:18px 0}
+.feature{display:flex;gap:11px;align-items:flex-start;color:#53627a;font-size:14px}
+.tick{flex:0 0 23px;width:23px;height:23px;border-radius:7px;background:#e8f7f2;color:var(--green);display:grid;place-items:center;font-weight:900}
+.steps{counter-reset:step;display:grid;gap:13px;margin:20px 0}
+.step{counter-increment:step;display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start}
+.step:before{content:counter(step);width:38px;height:38px;border-radius:12px;background:#eaf1ff;color:var(--blue);font-weight:850;display:grid;place-items:center}
+.step strong{display:block;color:var(--ink);margin-bottom:2px}
+.step span{color:var(--muted);font-size:14px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f7fc;color:#34445e;font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+td{color:#53627a}
+.demo{display:grid;grid-template-columns:1fr 230px;gap:20px;align-items:center;background:linear-gradient(135deg,#f0f6ff,#f7fbff);border:1px solid #dce9ff;border-radius:16px;padding:22px;margin:20px 0}
+.demo h3{margin:0 0 8px}
+.phone{background:#fff;border:7px solid #1d2b45;border-radius:28px;padding:17px 13px;text-align:center;box-shadow:0 15px 30px #1b376322}
+.avatar{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#38bdf8);margin:2px auto 9px;display:grid;place-items:center;color:white;font-size:22px;font-weight:800}
+.phone b{display:block;font-size:14px}.phone small{color:#738098;font-size:10px}
+.phone .actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:13px}
+.phone .actions span{background:#edf4ff;color:#2254a7;border-radius:7px;padding:6px 2px;font-size:10px;font-weight:750}
+.faq{border-top:1px solid var(--line);padding:16px 0}
+.faq:first-of-type{margin-top:12px}
+.faq h3{font-size:16px;margin:0 0 5px}
+.faq p{font-size:14px;margin:0}
+.footer{background:#10234b;color:#d7e5fb;padding:32px 0;text-align:center;font-size:13px}
+.footer strong{color:white}
+.small-note{font-size:12px;color:#7c899d}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.toc{position:static}.toc nav{display:grid;grid-template-columns:repeat(2,1fr);gap:0 15px}.navlinks{display:none}}
+@media(max-width:600px){.hero{padding:58px 0}.hero h1{letter-spacing:-1.3px}.section{padding:23px 20px}.section h2{font-size:23px}.cards,.feature-list{grid-template-columns:1fr}.demo{grid-template-columns:1fr}.phone{max-width:230px;margin:auto}.toc nav{grid-template-columns:1fr 1fr}table{font-size:12px}th,td{padding:9px 7px}}
+@media print{.topbar,.toc{display:none}.layout{display:block}.hero{padding:35px 0;background:#174b9c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.section{box-shadow:none;break-inside:avoid}body{background:white}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="nav">
+  <div class="brand">DIGITAL<span> CARD</span> GUIDE</div>
+  <nav class="navlinks"><a href="#meaning">Overview</a><a href="#features">Features</a><a href="#benefits">Benefits</a><a href="#create">How to create</a><a href="#faq">FAQ</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">A practical and complete guide</div>
+  <h1>Digital Business Card</h1>
+  <p>Your professional identity, contact details, services, photos and links — organised in one shareable digital page. Learn what it is, how it works and how it can help a business connect with customers.</p>
+  <div class="hero-pills"><span class="pill">One link</span><span class="pill">One QR code</span><span class="pill">Mobile-friendly</span><span class="pill">Easy to update</span></div>
+</div></section>
+
+<main><div class="wrap layout">
+<aside class="toc"><h3>On this page</h3><nav>
+<a href="#meaning">1. What is a digital business card?</a>
+<a href="#working">2. How does it work?</a>
+<a href="#features">3. Main features</a>
+<a href="#benefits">4. Benefits</a>
+<a href="#comparison">5. Digital vs paper card</a>
+<a href="#users">6. Who can use it?</a>
+<a href="#create">7. How to create one</a>
+<a href="#sharing">8. Ways to share</a>
+<a href="#design">9. Design tips</a>
+<a href="#security">10. Privacy and safety</a>
+<a href="#vs-social">11. Digital card vs social media</a>
+<a href="#faq">12. Frequently asked questions</a>
+</nav></aside>
+
+<div class="content">
+<section class="section" id="meaning">
+<h2>1. What is a Digital Business Card?</h2>
+<p class="lead">A digital business card is an online profile that presents a person, professional or business and makes it easy for others to contact them.</p>
+<p>Traditional business cards are printed on paper and usually contain a name, phone number, job title and company details. A digital business card presents similar information on a web page that can also include clickable contact buttons, photographs, videos, maps, service information and social media links.</p>
+<p>It is often designed as a small personal or business website. The owner shares one web link or QR code. When someone opens it on a smartphone, the page displays the owner's details in an organised format.</p>
+<div class="callout"><strong>Simple definition:</strong> A digital business card is a mobile-friendly online identity page that helps people learn about you and contact you from one place.</div>
+<h3>Example</h3>
+<p>Imagine a freelance photographer meeting a customer. Instead of handing over a paper card, the photographer shares a QR code. The customer scans it and opens a page showing the photographer's name, portfolio, services, WhatsApp button, Instagram profile and location. The customer can explore the information and contact the photographer immediately.</p>
+</section>
+
+<section class="section" id="working">
+<h2>2. How Does It Work?</h2>
+<p>A digital business card usually works through a unique web address. The owner creates a profile, adds information and receives a link and QR code. Anyone with internet access and a compatible browser can open the page.</p>
+<div class="steps">
+<div class="step"><div><strong>Create your profile</strong><span>Add your name, business name, designation, logo, photograph and introduction.</span></div></div>
+<div class="step"><div><strong>Add useful information</strong><span>Include contact details, services, business hours, gallery images, videos and social links.</span></div></div>
+<div class="step"><div><strong>Publish your page</strong><span>Your digital card becomes available through a web address, for example: yourname.example.com.</span></div></div>
+<div class="step"><div><strong>Share the link or QR code</strong><span>Send the link in a message, add it to your social profile or let someone scan your QR code.</span></div></div>
+<div class="step"><div><strong>Visitors take action</strong><span>They can call, message, save your contact, view your work or find your business location.</span></div></div>
+</div>
+<div class="demo">
+<div><h3>A sample digital card layout</h3><p>This simple illustration shows how a visitor might see a digital business card on a mobile phone. A real card can be customised with your brand colours, images and services.</p></div>
+<div class="phone"><div class="avatar">A</div><b>Alex Thomas</b><small>Creative Photographer</small><div class="actions"><span>Call</span><span>WhatsApp</span><span>Portfolio</span><span>Location</span></div><small style="display:block;margin-top:12px">alex.example.com</small></div>
+</div>
+</section>
+
+<section class="section" id="features">
+<h2>3. Main Features of a Digital Business Card</h2>
+<p>A digital card can be a simple contact page or a complete mini website. The features depend on the platform and the owner's requirements.</p>
+<div class="cards">
+<div class="card"><div class="num">01 · IDENTITY</div><h3>Personal and business details</h3><p>Name, designation, company name, logo, profile photo, short introduction and business description.</p></div>
+<div class="card"><div class="num">02 · CONTACT</div><h3>One-click contact buttons</h3><p>Clickable Call, WhatsApp, Email and website buttons help visitors reach you without manually typing details.</p></div>
+<div class="card"><div class="num">03 · PORTFOLIO</div><h3>Photo gallery</h3><p>Display product photos, completed projects, office images, designs, events or examples of your work.</p></div>
+<div class="card"><div class="num">04 · VIDEO</div><h3>Promotional video</h3><p>Introduce your business, explain your services or show a product through an embedded video.</p></div>
+<div class="card"><div class="num">05 · SERVICES</div><h3>Services and products</h3><p>Present what you offer, add short descriptions, highlight specialities and show current offers.</p></div>
+<div class="card"><div class="num">06 · LOCATION</div><h3>Google Maps location</h3><p>Help customers find your shop, office, studio or service location with a map link.</p></div>
+<div class="card"><div class="num">07 · SOCIAL</div><h3>Social media links</h3><p>Connect visitors to Instagram, Facebook, YouTube, LinkedIn and other relevant profiles.</p></div>
+<div class="card"><div class="num">08 · ENQUIRY</div><h3>Enquiry form</h3><p>Allow visitors to submit their name, contact details and requirements through a form, if supported.</p></div>
+<div class="card"><div class="num">09 · QUICK ACCESS</div><h3>QR code and shareable link</h3><p>Make the profile easy to open from printed materials, shop displays, packaging or digital messages.</p></div>
+<div class="card"><div class="num">10 · INFORMATION</div><h3>FAQs and business hours</h3><p>Answer common customer questions and show when your business is available.</p></div>
+</div>
+<h3>Other useful additions</h3>
+<div class="feature-list">
+<div class="feature"><span class="tick">✓</span><span><strong>Save contact:</strong> Downloadable contact file (vCard), where available.</span></div>
+<div class="feature"><span class="tick">✓</span><span><strong>Custom web address:</strong> A memorable URL using your name or brand.</span></div>
+<div class="feature"><span class="tick">✓</span><span><strong>Testimonials:</strong> Display customer feedback and reviews.</span></div>
+<div class="feature"><span class="tick">✓</span><span><strong>Product catalogue:</strong> Show selected products with descriptions.</span></div>
+<div class="feature"><span class="tick">✓</span><span><strong>Appointment link:</strong> Let customers request or book a meeting.</span></div>
+<div class="feature"><span class="tick">✓</span><span><strong>Analytics:</strong> View visits and interactions if the platform provides tracking.</span></div>
+</div>
+</section>
+
+<section class="section" id="benefits">
+<h2>4. Benefits of a Digital Business Card</h2>
+<div class="cards">
+<div class="card"><h3>Easy to share</h3><p>Share your details through WhatsApp, email, social media, a QR code or a website link.</p></div>
+<div class="card"><h3>More information</h3><p>Unlike a small paper card, a digital page can contain service descriptions, videos, galleries and useful links.</p></div>
+<div class="card"><h3>Quick communication</h3><p>Visitors can tap a button to call, message or email you instead of entering the details manually.</p></div>
+<div class="card"><h3>Update information</h3><p>When your phone number, address or services change, update the online page rather than reprinting cards.</p></div>
+<div class="card"><h3>Professional presentation</h3><p>A well-designed page gives customers a convenient place to understand your work and brand.</p></div>
+<div class="card"><h3>Less paper use</h3><p>It can reduce the need to print and distribute large quantities of paper visiting cards.</p></div>
+</div>
+<p><strong>Important:</strong> A digital business card does not automatically bring customers or guarantee sales. Its value depends on useful information, good design, easy navigation and how actively it is shared.</p>
+</section>
+
+<section class="section" id="comparison">
+<h2>5. Digital Business Card vs Traditional Paper Card</h2>
+<table>
+<thead><tr><th>Point</th><th>Paper business card</th><th>Digital business card</th></tr></thead>
+<tbody>
+<tr><td>Format</td><td>Printed physical card</td><td>Online profile or web page</td></tr>
+<tr><td>Sharing</td><td>Handed to someone</td><td>Link, QR code, message or email</td></tr>
+<tr><td>Information</td><td>Usually limited</td><td>Can include detailed information and media</td></tr>
+<tr><td>Contact</td><td>Details are read or typed</td><td>Can offer one-click contact buttons</td></tr>
+<tr><td>Updates</td><td>Usually requires reprinting</td><td>Can be updated online</td></tr>
+<tr><td>Internet</td><td>Not required to read</td><td>Usually required to open the page</td></tr>
+<tr><td>Best use</td><td>Face-to-face handouts and physical networking</td><td>Online sharing and interactive business information</td></tr>
+</tbody></table>
+<p>These two formats can work together. A printed card can include a QR code that opens the digital version, giving customers both a physical reminder and access to more information.</p>
+</section>
+
+<section class="section" id="users">
+<h2>6. Who Can Use a Digital Business Card?</h2>
+<p>Almost anyone who wants to present their professional identity or make it easier for customers to contact them can use one.</p>
+<div class="cards">
+<div class="card"><h3>Small businesses and shops</h3><p>Retail shops, computer stores, boutiques, supermarkets and local service centres.</p></div>
+<div class="card"><h3>Professionals</h3><p>Doctors, lawyers, accountants, consultants, architects and trainers.</p></div>
+<div class="card"><h3>Creative professionals</h3><p>Photographers, designers, video editors, artists and content creators.</p></div>
+<div class="card"><h3>Sales and service teams</h3><p>Sales executives, technicians, agents, repair services and field representatives.</p></div>
+<div class="card"><h3>Freelancers</h3><p>Independent developers, writers, tutors, marketers and other self-employed professionals.</p></div>
+<div class="card"><h3>Organisations</h3><p>Companies, agencies, institutions, event teams and non-profit organisations.</p></div>
+</div>
+</section>
+
+<section class="section" id="create">
+<h2>7. How to Create a Digital Business Card</h2>
+<p>Before creating the page, decide what information a visitor should see and what action you want them to take. Keep the most important details easy to find.</p>
+<div class="steps">
+<div class="step"><div><strong>Choose a platform</strong><span>Select a digital business card service or a website platform that supports mobile-friendly pages and the features you need.</span></div></div>
+<div class="step"><div><strong>Prepare your content</strong><span>Collect your logo, profile photo, business introduction, phone number, email, address and social media links.</span></div></div>
+<div class="step"><div><strong>Choose a design</strong><span>Use brand colours, readable fonts, clear sections and a layout that works well on mobile screens.</span></div></div>
+<div class="step"><div><strong>Add interactive features</strong><span>Set up call, WhatsApp, email, map, gallery, video, enquiry and other relevant links.</span></div></div>
+<div class="step"><div><strong>Publish and test</strong><span>Open the page on different phones. Test every button, link, image and form before sharing it publicly.</span></div></div>
+<div class="step"><div><strong>Create and distribute your QR code</strong><span>Link the QR code to the published page. Test it with more than one phone and keep it clear enough to scan.</span></div></div>
+</div>
+<h3>Information checklist</h3>
+<div class="feature-list">
+<div class="feature"><span class="tick">✓</span><span>Full name and designation</span></div>
+<div class="feature"><span class="tick">✓</span><span>Business or company name</span></div>
+<div class="feature"><span class="tick">✓</span><span>Logo and profile photograph</span></div>
+<div class="feature"><span class="tick">✓</span><span>Phone and WhatsApp number</span></div>
+<div class="feature"><span class="tick">✓</span><span>Email and website address</span></div>
+<div class="feature"><span class="tick">✓</span><span>Business address and map link</span></div>
+<div class="feature"><span class="tick">✓</span><span>Services or product details</span></div>
+<div class="feature"><span class="tick">✓</span><span>Social media profiles</span></div>
+</div>
+</section>
+
+<section class="section" id="sharing">
+<h2>8. How Can You Share It?</h2>
+<p>A digital business card is useful when people can access it easily. Add the link to the places where customers already interact with you.</p>
+<table>
+<thead><tr><th>Method</th><th>How to use it</th></tr></thead>
+<tbody>
+<tr><td>QR code</td><td>Print it on a visiting card, brochure, poster, product label or shop display.</td></tr>
+<tr><td>WhatsApp</td><td>Send the link in a chat, business enquiry or greeting message.</td></tr>
+<tr><td>Email signature</td><td>Add a short link below your name and contact details.</td></tr>
+<tr><td>Social media</td><td>Place the link in your Instagram, Facebook or LinkedIn bio.</td></tr>
+<tr><td>Website</td><td>Include it on your company website or staff directory.</td></tr>
+<tr><td>Events and meetings</td><td>Display the QR code on a screen or share it during networking.</td></tr>
+</tbody></table>
+</section>
+
+<section class="section" id="design">
+<h2>9. Tips for a Good Digital Business Card Design</h2>
+<div class="cards">
+<div class="card"><h3>Keep it simple</h3><p>Avoid crowding the page with too many buttons, colours or unnecessary paragraphs.</p></div>
+<div class="card"><h3>Make contact easy</h3><p>Place important actions such as Call and WhatsApp near the top of the page.</p></div>
+<div class="card"><h3>Use quality images</h3><p>Choose clear photographs and a sharp logo. Compress images so the page loads quickly.</p></div>
+<div class="card"><h3>Design for mobile</h3><p>Use readable text, comfortable button sizes and a layout that fits narrow screens.</p></div>
+<div class="card"><h3>Use consistent branding</h3><p>Match colours, typography and visual style with your business identity.</p></div>
+<div class="card"><h3>Keep it current</h3><p>Review phone numbers, links, opening hours, offers and service information regularly.</p></div>
+</div>
+<div class="callout"><strong>Good design principle:</strong> A visitor should understand who you are, what you offer and how to contact you within a few seconds.</div>
+</section>
+
+<section class="section" id="security">
+<h2>10. Privacy and Safety</h2>
+<p>A digital business card is often public, so publish only information that you are comfortable sharing. A personal mobile number, home address or private email may be visible to anyone who receives the link.</p>
+<ul>
+<li>Use business contact details where possible.</li>
+<li>Do not publish passwords, identity documents or confidential information.</li>
+<li>Check that external links lead to the correct official profiles and websites.</li>
+<li>Use a trusted platform and understand its privacy and data-handling policies.</li>
+<li>If an enquiry form collects personal information, explain how those details will be used.</li>
+<li>Use secure HTTPS hosting and keep the page and any connected services maintained.</li>
+</ul>
+<p>Also remember that a QR code can be copied or shared. Treat it as a public doorway to your online profile, not as a private access key.</p>
+</section>
+
+
+<section class="section" id="vs-social">
+<h2>11. Why a Digital Business Card Can Be Better Than Relying Only on Social Media</h2>
+<p class="lead">Social media is excellent for reaching audiences and sharing regular updates. A digital business card serves a different purpose: it gives your business one organised, professional destination where people can find essential information and contact you.</p>
+<p>Platforms such as Instagram, Facebook and LinkedIn are built around feeds, posts, profiles and platform-specific interactions. A digital business card is designed around your identity and the next action a visitor may want to take — calling you, sending a WhatsApp message, viewing your services or finding your location.</p>
+<table>
+<thead><tr><th>Point</th><th>Digital business card</th><th>Social media profile</th></tr></thead>
+<tbody>
+<tr><td>Main purpose</td><td>Present your business identity and make contact easy</td><td>Build an audience, publish content and encourage engagement</td></tr>
+<tr><td>Information layout</td><td>Organised sections for contact details, services, gallery, location and FAQs</td><td>Information is arranged according to each platform's profile and content format</td></tr>
+<tr><td>Contact options</td><td>Can bring Call, WhatsApp, Email, map and enquiry links together</td><td>Contact options vary by platform and account settings</td></tr>
+<tr><td>Brand experience</td><td>Can use a dedicated design, brand colours and custom page address</td><td>Profile appearance and layout follow the platform's design rules</td></tr>
+<tr><td>Sharing</td><td>One link or QR code can lead to the complete business page</td><td>Usually shared through a profile link or individual post</td></tr>
+<tr><td>Content discovery</td><td>Visitors generally open it when they receive the link or scan the QR code</td><td>Feeds, recommendations, hashtags and sharing can help new people discover content</td></tr>
+<tr><td>Ownership and control</td><td>Depends on the provider and hosting arrangement; a custom domain can offer more control</td><td>Account access, features and visibility depend on the social platform</td></tr>
+</tbody></table>
+<h3>Why businesses may prefer a digital card as their main information page</h3>
+<div class="cards">
+<div class="card"><h3>One central destination</h3><p>Instead of asking customers to search through posts or several profile links, share one page with the essential details in one place.</p></div>
+<div class="card"><h3>Focused customer actions</h3><p>Put the most useful next steps — call, WhatsApp, email, view services or get directions — where visitors can find them quickly.</p></div>
+<div class="card"><h3>More structured business information</h3><p>Present your introduction, services, working hours, portfolio, location and FAQs in sections designed for customers.</p></div>
+<div class="card"><h3>Consistent sharing</h3><p>Use the same digital card link on your printed QR code, visiting card, WhatsApp messages, email signature and social profiles.</p></div>
+</div>
+<div class="callout"><strong>Important:</strong> A digital business card does not replace social media. Social platforms are useful for discovery, community building, updates and promotion. A digital business card works well as your central business information and contact page. Using both together is often the strongest approach.</div>
+<h3>A practical example</h3>
+<p>A customer discovers a photographer through an Instagram post. The photographer's bio contains a digital business card link. The customer opens it to see the photographer's portfolio, services, location and contact buttons, then sends an enquiry. In this example, social media helps the customer discover the business, while the digital card helps the customer understand the offering and get in touch.</p>
+</section>
+
+<section class="section" id="faq">
+<h2>12. Frequently Asked Questions</h2>
+<div class="faq"><h3>1. Is a digital business card the same as a website?</h3><p>Not exactly. A digital business card is usually a compact page focused on a person or business identity and quick contact. A full website may contain many pages, detailed content and more advanced functions.</p></div>
+<div class="faq"><h3>2. Do customers need to install an app?</h3><p>Usually not. If the card is a web page, customers can open it in a browser using a link or QR code. Some providers may also offer optional apps.</p></div>
+<div class="faq"><h3>3. Does a digital business card need a QR code?</h3><p>No. A QR code is a convenient sharing method, but the web link can also be shared directly through messages, email and social media.</p></div>
+<div class="faq"><h3>4. Can I change my details after publishing?</h3><p>Most hosted digital card services allow the owner to edit the profile. The exact editing options depend on the platform or service plan.</p></div>
+<div class="faq"><h3>5. Can I add photos and videos?</h3><p>Many platforms support photo galleries and embedded videos. Check the platform's media limits and supported formats.</p></div>
+<div class="faq"><h3>6. Can customers contact me through WhatsApp?</h3><p>Yes, if the card includes a correctly configured WhatsApp link or button. Visitors can tap it to start a conversation.</p></div>
+<div class="faq"><h3>7. Is a digital business card free?</h3><p>Some services offer free plans with basic features. Custom domains, advanced design, analytics or additional functions may require payment.</p></div>
+<div class="faq"><h3>8. Can a digital business card help promote my business?</h3><p>It can support promotion by bringing your services, portfolio, contact options and social links together. Results depend on the quality of the page and how effectively you share it.</p></div>
+<div class="faq"><h3>9. What happens if I change my phone number?</h3><p>Update the number on the digital card. If you keep the same page link and QR destination, people can continue using the same link to view the updated details.</p></div>
+<div class="faq"><h3>10. Can I use one card for my entire company?</h3><p>You can create a company profile, and you can also create separate cards for employees or departments if the platform supports multiple profiles.</p></div>
+</section>
+
+<section class="section">
+<h2>Conclusion</h2>
+<p class="lead">A digital business card is more than an online version of a printed visiting card. It can act as a compact digital identity hub for a professional or business.</p>
+<p>By combining contact buttons, service information, photographs, videos, maps, social media links and an enquiry option in one mobile-friendly page, it gives visitors a simple way to discover a business and take the next step.</p>
+<p>The best digital business card is not necessarily the one with the most features. It is the one that communicates clearly, loads quickly, looks professional and helps people contact you without difficulty.</p>
+</section>
+<p class="small-note">Educational guide · Review platform features, pricing and privacy terms before choosing a digital business card provider.</p>
+</div></div></main>
+<footer class="footer"><div class="wrap"><strong>DIGITAL BUSINESS CARD</strong><br>A complete guide to your online professional identity.</div></footer>
+</body></html>
